@@ -4,6 +4,9 @@ const express = require('express');
 const { initDb } = require('./config/db');
 const routes = require('./routes/contacts');
 
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
+
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -27,6 +30,7 @@ app.use('/api/contacts', routes);
 // Initialize database and start server
 initDb()
   .then(() => {
+   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
     app.listen(port, () => {
       console.log(`Server running on port ${port}`);
     });
