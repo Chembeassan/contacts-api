@@ -4,17 +4,86 @@ GET http://localhost:3000/api/contacts
 ### Get a single contact
 GET http://localhost:3000/api/contacts/12345
 
-### Create a new contact
-POST http://localhost:3000/api/contacts
-Content-Type: application/json
+### [1] Add Emma Watson
+POST {{baseUrl}}/contacts
+Content-Type: {{contentType}}
 
 {
-  "firstName": "John",
-  "lastName": "Doe",
-  "email": "john.doe@example.com",
+  "firstName": "Emma",
+  "lastName": "Watson",
+  "email": "emma.w@example.com",
   "favoriteColor": "blue",
-  "birthday": "1990-01-01"
+  "birthday": "1990-04-15"
 }
+
+### [2] Add Michael Jordan
+POST {{baseUrl}}/contacts
+Content-Type: {{contentType}}
+
+{
+  "firstName": "Michael",
+  "lastName": "Jordan",
+  "email": "mj@example.com",
+  "favoriteColor": "red",
+  "birthday": "1963-02-17"
+}
+
+### [3] Add Taylor Swift
+POST {{baseUrl}}/contacts
+Content-Type: {{contentType}}
+
+{
+  "firstName": "Taylor",
+  "lastName": "Swift",
+  "email": "taylor@example.com",
+  "favoriteColor": "purple",
+  "birthday": "1989-12-13"
+}
+
+### [4] Add Elon Musk
+POST {{baseUrl}}/contacts
+Content-Type: {{contentType}}
+
+{
+  "firstName": "Elon",
+  "lastName": "Musk",
+  "email": "elon@example.com",
+  "favoriteColor": "black",
+  "birthday": "1971-06-28"
+}
+
+### [5] Add Priyanka Chopra
+POST {{baseUrl}}/contacts
+Content-Type: {{contentType}}
+
+{
+  "firstName": "Priyanka",
+  "lastName": "Chopra",
+  "email": "priyanka@example.com",
+  "favoriteColor": "yellow",
+  "birthday": "1982-07-18"
+}
+
+### [6] Verify All Contacts
+GET {{baseUrl}}/contacts
+
+### [7] Get Single Contact
+@contactId = {{createContact.response.body._id}}
+GET {{baseUrl}}/contacts/{{contactId}}
+
+### [8] Update Contact
+PUT {{baseUrl}}/contacts/{{contactId}}
+Content-Type: {{contentType}}
+
+{
+  "favoriteColor": "green"
+}
+
+### [9] Delete Contact
+DELETE {{baseUrl}}/contacts/{{contactId}}
+
+### [10] Verify Deletion
+GET {{baseUrl}}/contacts/{{contactId}}
 
 ### Update a contact
 PUT http://localhost:3000/api/contacts/12345
